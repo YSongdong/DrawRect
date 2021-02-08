@@ -12,13 +12,27 @@
 // Include any system framework and library headers here that should be included in all compilation units.
 // You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
 
-#define Width   [UIScreen mainScreen].bounds.size.width
-#define Height  [UIScreen mainScreen].bounds.size.height
+/********************** Rect Size *************************/
+//通用获取屏幕宽高
+#define KScreenH  [UIScreen mainScreen].bounds.size.height
+#define KScreenW  [UIScreen mainScreen].bounds.size.width
 
-#import "SDTool.h"
+// 判断是否是ipad
+#define isPad ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad)
+
+//导航栏高度
+#define Height_StatusBar ([[UIApplication sharedApplication] statusBarFrame].size.height)
+#define KSStatusHeight (isPad ? Height_StatusBar + 20 : KScreenH > 812 ? 44 : Height_StatusBar )
+#define KSNaviTopHeight (KSStatusHeight + 44 )
+
+//TabBar高度
+#define KSTabbarH (isPad ? 0 : KScreenH >= 812 ? 34 : 0)
+#define KSTabBarHeight  (KSTabbarH + 49)
+
+
+#import "Tool/SDTool.h"
 #import "GCDAsyncSocket.h"
 #import "DataByteModel.h"
-#import "NSData+hexString.h"
 
 
 #endif /* PrefixHeader_pch */

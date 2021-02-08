@@ -11,7 +11,6 @@
 		158D0D4725CF7B0D005A48E6 /* GCDAsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 158D0D4525CF7B0D005A48E6 /* GCDAsyncSocket.m */; };
 		158D0D4B25CF839B005A48E6 /* SDTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 158D0D4A25CF839B005A48E6 /* SDTool.m */; };
 		158D0D5125CF8591005A48E6 /* DataByteModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 158D0D5025CF8591005A48E6 /* DataByteModel.m */; };
-		158D0D5425CFDAA7005A48E6 /* NSData+hexString.m in Sources */ = {isa = PBXBuildFile; fileRef = 158D0D5325CFDAA7005A48E6 /* NSData+hexString.m */; };
 		1593D60D25CB921B0048AD14 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1593D60C25CB921B0048AD14 /* AppDelegate.m */; };
 		1593D61325CB921B0048AD14 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1593D61225CB921B0048AD14 /* ViewController.m */; };
 		1593D61625CB921B0048AD14 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1593D61425CB921B0048AD14 /* Main.storyboard */; };
@@ -50,8 +49,6 @@
 		158D0D4A25CF839B005A48E6 /* SDTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SDTool.m; sourceTree = "<group>"; };
 		158D0D4F25CF8591005A48E6 /* DataByteModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DataByteModel.h; sourceTree = "<group>"; };
 		158D0D5025CF8591005A48E6 /* DataByteModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DataByteModel.m; sourceTree = "<group>"; };
-		158D0D5225CFDAA7005A48E6 /* NSData+hexString.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSData+hexString.h"; sourceTree = "<group>"; };
-		158D0D5325CFDAA7005A48E6 /* NSData+hexString.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSData+hexString.m"; sourceTree = "<group>"; };
 		1593D60825CB921B0048AD14 /* DrawRect.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DrawRect.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1593D60B25CB921B0048AD14 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		1593D60C25CB921B0048AD14 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -128,21 +125,16 @@
 		1593D60A25CB921B0048AD14 /* DrawRect */ = {
 			isa = PBXGroup;
 			children = (
+				6E39C2C825D10D9F00953A89 /* PanGestureView */,
+				6E39C2C725D10D8D00953A89 /* Model */,
+				6E39C2C625D10D7A00953A89 /* Tool */,
 				158D0D4425CF7B02005A48E6 /* Socket */,
 				1593D64325CB95690048AD14 /* WechatIMG2.jpeg */,
 				1593D60B25CB921B0048AD14 /* AppDelegate.h */,
 				1593D60C25CB921B0048AD14 /* AppDelegate.m */,
 				158D0D4825CF8322005A48E6 /* PrefixHeader.pch */,
-				158D0D4925CF839B005A48E6 /* SDTool.h */,
-				158D0D4A25CF839B005A48E6 /* SDTool.m */,
-				158D0D5225CFDAA7005A48E6 /* NSData+hexString.h */,
-				158D0D5325CFDAA7005A48E6 /* NSData+hexString.m */,
-				158D0D4F25CF8591005A48E6 /* DataByteModel.h */,
-				158D0D5025CF8591005A48E6 /* DataByteModel.m */,
 				1593D61125CB921B0048AD14 /* ViewController.h */,
 				1593D61225CB921B0048AD14 /* ViewController.m */,
-				1552344C25CCDD920059D314 /* SDDrawBardView.h */,
-				1552344D25CCDD920059D314 /* SDDrawBardView.m */,
 				1593D61425CB921B0048AD14 /* Main.storyboard */,
 				1593D61725CB921E0048AD14 /* Assets.xcassets */,
 				1593D61925CB921E0048AD14 /* LaunchScreen.storyboard */,
@@ -168,6 +160,33 @@
 				1593D63425CB921E0048AD14 /* Info.plist */,
 			);
 			path = DrawRectUITests;
+			sourceTree = "<group>";
+		};
+		6E39C2C625D10D7A00953A89 /* Tool */ = {
+			isa = PBXGroup;
+			children = (
+				158D0D4925CF839B005A48E6 /* SDTool.h */,
+				158D0D4A25CF839B005A48E6 /* SDTool.m */,
+			);
+			path = Tool;
+			sourceTree = "<group>";
+		};
+		6E39C2C725D10D8D00953A89 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				158D0D4F25CF8591005A48E6 /* DataByteModel.h */,
+				158D0D5025CF8591005A48E6 /* DataByteModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		6E39C2C825D10D9F00953A89 /* PanGestureView */ = {
+			isa = PBXGroup;
+			children = (
+				1552344C25CCDD920059D314 /* SDDrawBardView.h */,
+				1552344D25CCDD920059D314 /* SDDrawBardView.m */,
+			);
+			path = PanGestureView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -308,7 +327,6 @@
 				1552344E25CCDD920059D314 /* SDDrawBardView.m in Sources */,
 				1593D60D25CB921B0048AD14 /* AppDelegate.m in Sources */,
 				1593D61E25CB921E0048AD14 /* main.m in Sources */,
-				158D0D5425CFDAA7005A48E6 /* NSData+hexString.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
