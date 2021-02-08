@@ -24,6 +24,8 @@
 // 发送数据源
 @property (nonatomic,strong) DataByteModel *sendModel;
 
+@property (nonatomic,assign) CGPoint twoPoint;
+
 @end
 
 @implementation ViewController
@@ -123,8 +125,9 @@
     }
     drawImagV.image = [self cutImageFromOrignalImage:CGRectMake(x, y, w, h)];
     
-    
     if (self.drawView.state ==  twoState) {
+        // 中心点 xy
+        self.twoPoint= CGPointMake((startPoint.x * self.wRatio + endPoint.x * self.wRatio)/2 ,(startPoint.y * self.wRatio + endPoint.y * self.wRatio)/2);
         return;
     }
     self.sendModel = [[DataByteModel alloc]init];
@@ -229,9 +232,59 @@
  @param tag 本次读取的标记
  */
 - (void)socket:(GCDAsyncSocket *)sock didReadData:(NSData *)data withTag:(long)tag{
-    NSString *text = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
-    // 读取到服务端数据值后,能再次读取
-    [self.clientSocket readDataWithTimeout:- 1 tag:0];
+    int index = 0;
+    
+    //报头
+    NSData *headerData =[data subdataWithRange:NSMakeRange(0, 4)];
+    NSString *headerStr = [[NSString alloc]initWithData:headerData encoding:NSUTF8StringEncoding];
+    index += 4;
+    
+    // 剩余数据长度
+    NSData *data1 =[data subdataWithRange:NSMakeRange(index, 4)];
+    int totalLenght = *(int*)([data1 bytes]);
+    index += 4;
+    
+    //GUID 长度
+    NSData *data2 =[data subdataWithRange:NSMakeRange(index, 4)];
+    int guidLenght = *(int*)([data2 bytes]);
+    index += 4;
+    
+    //GUID
+    NSData *data3 =[data subdataWithRange:NSMakeRange(index, index+guidLenght)];
+    NSString *guidStr = [[NSString alloc]initWithData:data3 encoding:NSUTF8StringEncoding];
+    index += guidLenght;
+    
+    //ParamertId
+    NSData *data4 =[data subdataWithRange:NSMakeRange(index, 4)];
+    int paramerId = *(int*)([data4 bytes]);
+    index += 4;
+    
+    //重心点X
+    NSData *data5 =[data subdataWithRange:NSMakeRange(index, 4)];
+    int x = *(int*)([data5 bytes]);
+    index += 4;
+    
+    //重心点y
+    NSData *data6 =[data subdataWithRange:NSMakeRange(index, 4)];
+    int y = *(int*)([data6 bytes]);
+    index += 4;
+    
+    //距离
+    NSData *data7 =[data subdataWithRange:NSMakeRange(index, 4)];
+    int camDist = *(int*)([data7 bytes]);
+   
+    
+    // 图片总宽度
+    double imageWidthRatio = self.bgimg.size.width / 108;
+    // 物体的角度
+    double objectAngle = x / imageWidthRatio;
+    // 杆塔角度
+    double towerAngle = self.twoPoint.x / imageWidthRatio;
+    // 夹角  取绝对值
+    double includAngle = fabs(towerAngle - objectAngle);
+    
+    
+    NSLog(@"---camDist--%d----",camDist);
 }
 
 
